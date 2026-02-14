@@ -449,35 +449,6 @@
       box-shadow: 0 2px 8px rgba(196, 30, 86, 0.1);
     }
 
-    .checkbox {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--gold);
-      border-radius: 4px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      flex-shrink: 0;
-      margin-left: auto;
-      background: white;
-    }
-
-    .checkbox:hover { transform: scale(1.1); }
-
-    .checkbox.checked {
-      background: linear-gradient(135deg, var(--rose), var(--deep-rose));
-      border-color: var(--deep-rose);
-    }
-
-    .checkbox.checked::after {
-      content: '\\2713';
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
     /* Signature */
     .signature-section {
       text-align: center;
@@ -728,17 +699,14 @@
             <li>
               <span class="icon">&#128118;</span>
               <span>Babysitting our younger sister</span>
-              <span class="checkbox" data-index="0"></span>
             </li>
             <li>
               <span class="icon">&#127968;</span>
               <span>Keeping the house safe &amp; clean</span>
-              <span class="checkbox" data-index="1"></span>
             </li>
             <li>
               <span class="icon">&#10004;&#65039;</span>
               <span>Making sure everything is okay</span>
-              <span class="checkbox" data-index="2"></span>
             </li>
           </ul>
         </div>
@@ -824,17 +792,6 @@
       });
     }
 
-    // ───── Checkboxes ─────
-    document.querySelectorAll('.checkbox').forEach(cb => {
-      cb.addEventListener('click', (e) => {
-        e.stopPropagation();
-        cb.classList.toggle('checked');
-        if (cb.classList.contains('checked')) {
-          burstSparkles(e.clientX, e.clientY);
-        }
-      });
-    });
-
     // ───── Sparkle Effect ─────
     function burstSparkles(x, y) {
       const colors = ['#D4A843', '#F0D78C', '#E8567F', '#FFD6E0', '#fff'];
@@ -869,16 +826,6 @@
       // Confetti burst
       launchConfetti();
 
-      // Check all boxes
-      document.querySelectorAll('.checkbox').forEach((cb, i) => {
-        setTimeout(() => {
-          if (!cb.classList.contains('checked')) {
-            cb.classList.add('checked');
-            const rect = cb.getBoundingClientRect();
-            burstSparkles(rect.left + 10, rect.top + 10);
-          }
-        }, 500 + i * 200);
-      });
     }
 
     // ───── Confetti ─────
